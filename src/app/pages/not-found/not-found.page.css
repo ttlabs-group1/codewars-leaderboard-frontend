@@ -1,0 +1,17 @@
+.page-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+button {
+  margin-top: 40px;
+  display: block;
+  width: 100%;
+}
