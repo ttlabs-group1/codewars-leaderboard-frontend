@@ -11,9 +11,10 @@ import { LeaderBoardPage } from './pages/leader-board/leader-board.page';
 import { UserDetailPage } from './pages/user-detail/user-detail.page';
 import { NotFoundPage } from './pages/not-found/not-found.page';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, LandingPage, LeaderBoardPage, UserDetailPage, NotFoundPage, NavbarComponent],
+  declarations: [AppComponent, LandingPage, LeaderBoardPage, UserDetailPage, NotFoundPage, NavbarComponent, FooterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
