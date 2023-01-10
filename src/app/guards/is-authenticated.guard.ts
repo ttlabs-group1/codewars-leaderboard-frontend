@@ -18,7 +18,7 @@ export class IsAuthenticatedGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    let isLoggedIn = false;
+    let isLoggedIn = true;
 
     if (!isLoggedIn) {
       this.router.navigate(['/']);
