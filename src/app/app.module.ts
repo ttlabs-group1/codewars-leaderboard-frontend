@@ -12,7 +12,11 @@ import { NotFoundPage } from './pages/not-found/not-found.page';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 
+import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { AvatarModule } from 'primeng/avatar';
+import { TableModule } from 'primeng/table';
+import { AddCommentComponent } from './components/add-comment/add-comment.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +27,16 @@ import { CardModule } from 'primeng/card';
     NotFoundPage,
     NavbarComponent,
     FooterComponent,
+    AddCommentComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     CardModule,
+    ButtonModule,
+    AvatarModule,
+    TableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

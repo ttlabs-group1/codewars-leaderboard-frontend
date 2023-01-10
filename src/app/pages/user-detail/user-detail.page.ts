@@ -11,6 +11,35 @@ export class UserDetailPage {
 
   userId!: number;
 
+  // userDetail: any[] = [
+  //   {}
+  // ]
+
+  languages: any[] = [
+    {
+      language: 'Java',
+      rank: '6kyu',
+      score: 75,
+    },
+    {
+      language: 'Python',
+      rank: '7kyu',
+      score: 68,
+    },
+  ];
+
+  comments: any[] = [
+    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
+    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
+    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
+    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
+    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
+    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
+    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
+    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
+    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
+  ];
+
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap) => {
       console.log(paramMap.get('id'));
