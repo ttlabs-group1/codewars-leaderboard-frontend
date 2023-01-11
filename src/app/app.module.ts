@@ -22,6 +22,10 @@ import { CardModule } from 'primeng/card';
 import { AvatarModule } from 'primeng/avatar';
 import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+import {MessageService} from 'primeng/api';
+import {ToastModule} from 'primeng/toast';
 
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { LoginComponent } from './components/login/login.component';
@@ -55,8 +59,13 @@ import { LocalAuthService } from './services/local-auth.service';
     InputTextareaModule,
     DynamicDialogModule,
     InputTextModule,
+    DialogModule,
+    ConfirmDialogModule,
+    ToastModule
   ],
-  providers: [
+  providers: [ 
+    MessageService, 
+    ConfirmationService,
     { provide: AUTH_SERVICE_TOKEN, useClass: LocalAuthService }
   ],
   bootstrap: [AppComponent],
