@@ -1,3 +1,7 @@
 :host ::ng-deep p-tabview .p-tabview-nav {
     justify-content: center !important;
 }
+
+.pointer {
+    cursor: pointer;
+}

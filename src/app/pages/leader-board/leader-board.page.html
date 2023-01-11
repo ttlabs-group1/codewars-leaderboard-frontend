@@ -7,7 +7,7 @@
                 <th>USERNAME</th>
                 <th>NAME</th>
                 <th>HONOR</th>
-                <th>ACTION</th>
+                <th>ACTIONS</th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-user>
@@ -15,7 +15,11 @@
                 <td>{{user.username}}</td>
                 <td>{{user.name}}</td>
                 <td>{{user.honor}}</td>
-                <td><button class="text-white p-1 bg-red-400 border-round-sm border-none">DELETE</button></td>
+                <td class="flex gap-1">
+                  <!-- <button class="text-white p-1 bg-blue-400 border-round-sm border-none"><a [routerLink]="['/user', user.id]">VIEW</a></button>  -->
+                  <a [routerLink]="['/user', user.id]"><button class="text-white p-1 bg-blue-400 border-round-sm border-none pointer">VIEW</button></a>
+                  <button class="text-white p-1 bg-red-400 border-round-sm border-none">DELETE</button>
+                </td>
               </tr>
             </ng-template>
           </p-table>
@@ -36,7 +40,8 @@
                   <tr class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <th>USERNAME</th>
                     <th>NAME</th>
-                    <th>HONOR</th>
+                    <th>SCORE</th>
+                    <th>LANGUAGE</th>
                     <th>ACTION</th>
                   </tr>
                 </ng-template>
@@ -44,8 +49,9 @@
                   <tr class="w-full text-sm text-left text-gray-800">
                     <td>{{user.username}}</td>
                     <td>{{user.name}}</td>
-                    <td>{{user.honor}}</td>
-                    <td>{{user.username}}</td>
+                    <td>{{user.score}}</td>
+                    <td>{{user.language}}</td>
+                    <td><button class="text-white p-1 bg-red-400 border-round-sm border-none">DELETE</button></td>
                   </tr>
                 </ng-template>
               </p-table>

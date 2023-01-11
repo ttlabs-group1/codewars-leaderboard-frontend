@@ -9,23 +9,28 @@ export class LeaderBoardPage {
   users_honors: any[] = [{
     username: "frederick.arthur",
     name: "Frederick Arthur",
-    honor: 500
+    honor: 500,
+    id: 1
   },
   {
     username: "caleb.fianu",
     name: "Caleb Fianu",
-    honor: 500
+    honor: 500,
+    id: 2
   },
   {
     username: "kwaku.biney",
     name: "Kwaku Arthur",
-    honor: 500
+    honor: 500,
+    id: 3
   }];
 
   users: any[] = [{
     username: "frederick.arthur",
     name: "Frederick Arthur",
-    honor: 500
+    score: 500,
+    language: "Python",
+    id: 4
   }];
 
   filters: string[] = ["overall", "java", "python", "typescript"];
