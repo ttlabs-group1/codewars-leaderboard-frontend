@@ -16,16 +16,40 @@ import { UserDetailPage } from './pages/user-detail/user-detail.page';
 import { NotFoundPage } from './pages/not-found/not-found.page';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { TabViewModule } from 'primeng/tabview';
+
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { AvatarModule } from 'primeng/avatar';
+import { TableModule } from 'primeng/table';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
+import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
-  declarations: [AppComponent, LandingPage, LeaderBoardPage, UserDetailPage, NotFoundPage, NavbarComponent, FooterComponent, LoginComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    LandingPage,
+    LeaderBoardPage,
+    UserDetailPage,
+    NotFoundPage,
+    NavbarComponent,
+    FooterComponent,
+    AddCommentComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    CardModule,
     ButtonModule,
+    TabViewModule,
+    TableModule,
+    AvatarModule,
+    TableModule,
+    InputTextareaModule,
     DynamicDialogModule,
     InputTextModule
   ],
