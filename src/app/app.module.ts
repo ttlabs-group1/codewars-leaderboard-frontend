@@ -37,6 +37,8 @@ import { RegisterComponent } from './components/register/register.component';
     NavbarComponent,
     FooterComponent,
     AddCommentComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,7 @@ import { RegisterComponent } from './components/register/register.component';
     TableModule,
     InputTextareaModule,
     DynamicDialogModule,
-    InputTextModule
+    InputTextModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,15 +1,47 @@
 <form action="#">
-    <input type="text" name="name" id="name" pInputText placeholder="Full name" class="w-full mb-2" />
-    <input type="text" name="username" id="username" pInputText placeholder="Username" class="w-full mb-2" />
-    <input type="password" name="password" id="password" pInputText placeholder="Password" class="w-full mb-2" />
-    <input type="password" name="confirm" id="confirm" pInputText placeholder="Confirm password" class="w-full mb-2" />
+  <input
+    type="text"
+    name="name"
+    id="name"
+    pInputText
+    placeholder="Full name"
+    class="w-full mb-2"
+    [style]="{ 'font-family': 'inherit' }"
+  />
+  <input
+    type="text"
+    name="username"
+    id="username"
+    pInputText
+    placeholder="Username"
+    class="w-full mb-2"
+    [style]="{ 'font-family': 'inherit' }"
+  />
+  <input
+    type="password"
+    name="password"
+    id="password"
+    pInputText
+    placeholder="Password"
+    class="w-full mb-2"
+    [style]="{ 'font-family': 'inherit' }"
+  />
+  <input
+    type="password"
+    name="confirm"
+    id="confirm"
+    pInputText
+    placeholder="Confirm password"
+    class="w-full mb-2"
+    [style]="{ 'font-family': 'inherit' }"
+  />
 
-    <div class="flex justify-content-center">
-        <button type="submit" pButton label="Join"></button>
-    </div>
+  <div class="flex justify-content-center">
+    <button type="submit" pButton pRipple label="Join"></button>
+  </div>
 
-    <div class="flex justify-content-center align-items-center">
-        <p class="flex justify-content-center">Have an account already?</p>
-        <button pButton type="button" label="Login" class="p-button-link"></button>
-    </div>
+  <div class="flex justify-content-center align-items-center">
+    <p class="flex justify-content-center">Have an account already?</p>
+    <button pButton type="button" label="Login" class="p-button-link"></button>
+  </div>
 </form>
