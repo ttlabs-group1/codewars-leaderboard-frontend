@@ -17,10 +17,20 @@ export class LocalAuthService implements AuthService {
   constructor() { }
 
   login(credentials: Auth): Observable<Response<User>> {
-    return createObservable(LocalAuthService.USER);
+    return createObservable<Response<User>>({
+      success: true,
+      data: {
+        data: LocalAuthService.USER
+      }
+    });
   }
 
-  register(credentials: Auth): Observable<string> {
-    return createObservable("registration successful");
+  register(credentials: Auth): Observable<Response<string>> {
+    return createObservable<Response<string>>({
+      success: true,
+      data: {
+        data: "registration successful"
+      }
+    });
   }
 }
