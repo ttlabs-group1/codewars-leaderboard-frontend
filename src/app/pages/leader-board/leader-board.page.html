@@ -24,7 +24,7 @@
                   VIEW
                 </button></a
               >
-              <button
+              <button (click)="removeUser()"
                 class="text-white p-1 bg-red-400 border-round-sm border-none"
               >
                 DELETE
@@ -69,7 +69,7 @@
             <td>{{user.score}}</td>
             <td>{{user.language}}</td>
             <td>
-              <button
+              <button (click)="removeUser()"
                 class="text-white p-1 bg-red-400 border-round-sm border-none"
               >
                 DELETE
@@ -80,4 +80,6 @@
       </p-table>
     </p-tabPanel>
   </p-tabView>
+  <p-toast></p-toast>
+  <p-confirmDialog header="Confirmation"></p-confirmDialog>
 </div>
