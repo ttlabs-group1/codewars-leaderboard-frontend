@@ -11,6 +11,7 @@ import { UserDetailPage } from './pages/user-detail/user-detail.page';
 import { NotFoundPage } from './pages/not-found/not-found.page';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { TabViewModule } from 'primeng/tabview';
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -37,6 +38,8 @@ import { AddCommentComponent } from './components/add-comment/add-comment.compon
     BrowserAnimationsModule,
     CardModule,
     ButtonModule,
+    TabViewModule,
+    TableModule,
     AvatarModule,
     TableModule,
     InputTextareaModule,
