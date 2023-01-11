@@ -1,7 +1,7 @@
-<nav class="flex justify-content-between align-items-center">
+<nav class="flex justify-content-between align-items-center p-2">
     <div class="brand">Codewars Leaderboard</div>
     <div class="flex gap-3">
-        <button pButton type="button" label="Login"></button>
-        <button pButton type="button" label="Join" class="p-button-success"></button>
+        <button pButton type="button" label="Login" (click)="showLogin()"></button>
+        <button pButton type="button" label="Join" class="p-button-success" (click)="showRegister()"></button>
     </div>
 </nav>
