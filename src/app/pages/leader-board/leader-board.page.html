@@ -1,60 +1,83 @@
 <div class="flex justify-content-center text-center">
-    <p-tabView class="w-9">
-        <p-tabPanel header="Honor" [selected]="true">
-           <p-table [value]="users_honors" [paginator]="true" [rows]="10">
-            <ng-template pTemplate="header">
-              <tr class="w-full text-sm text-left text-gray-500 border-round-md">
-                <th>USERNAME</th>
-                <th>NAME</th>
-                <th>HONOR</th>
-                <th>ACTIONS</th>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-user>
-              <tr class="w-full text-sm text-left text-gray-8">
-                <td>{{user.username}}</td>
-                <td>{{user.name}}</td>
-                <td>{{user.honor}}</td>
-                <td class="flex gap-1">
-                  <!-- <button class="text-white p-1 bg-blue-400 border-round-sm border-none"><a [routerLink]="['/user', user.id]">VIEW</a></button>  -->
-                  <a [routerLink]="['/user', user.id]"><button class="text-white p-1 bg-blue-400 border-round-sm border-none pointer">VIEW</button></a>
-                  <button class="text-white p-1 bg-red-400 border-round-sm border-none">DELETE</button>
-                </td>
-              </tr>
-            </ng-template>
-          </p-table>
-        </p-tabPanel>
-        <p-tabPanel header="Score">
-            <div class="flex gap-4">
-                <p class="flex justify-content-start text-xs font-semibold text-blue-600">Based on: </p>
-                <select name="demo" id="#" class="text-xs font-semibold p-0 border-round border-blue-600">
-                    <option selected="selected" value="Overall">Overall</option>
-                    <option value="python">Python</option>
-                    <option value="java">Java</option>
-                </select>
-                
-            </div>
-            
-            <p-table [value]="users" [paginator]="true" [rows]="10">
-                <ng-template pTemplate="header">
-                  <tr class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <th>USERNAME</th>
-                    <th>NAME</th>
-                    <th>SCORE</th>
-                    <th>LANGUAGE</th>
-                    <th>ACTION</th>
-                  </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-user>
-                  <tr class="w-full text-sm text-left text-gray-800">
-                    <td>{{user.username}}</td>
-                    <td>{{user.name}}</td>
-                    <td>{{user.score}}</td>
-                    <td>{{user.language}}</td>
-                    <td><button class="text-white p-1 bg-red-400 border-round-sm border-none">DELETE</button></td>
-                  </tr>
-                </ng-template>
-              </p-table>
-        </p-tabPanel>
-    </p-tabView>
+  <p-tabView class="w-9">
+    <p-tabPanel header="Honor" [selected]="true">
+      <p-table [value]="users_honors" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+          <tr class="w-full text-sm text-left text-gray-500 border-round-md">
+            <th>USERNAME</th>
+            <th>NAME</th>
+            <th>HONOR</th>
+            <th>ACTIONS</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+          <tr class="w-full text-sm text-left text-gray-8">
+            <td>{{user.username}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.honor}}</td>
+            <td class="flex gap-1">
+              <!-- <button class="text-white p-1 bg-blue-400 border-round-sm border-none"><a [routerLink]="['/user', user.id]">VIEW</a></button>  -->
+              <a [routerLink]="['/user', user.id]"
+                ><button
+                  class="text-white p-1 bg-blue-400 border-round-sm border-none pointer"
+                >
+                  VIEW
+                </button></a
+              >
+              <button
+                class="text-white p-1 bg-red-400 border-round-sm border-none"
+              >
+                DELETE
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-tabPanel>
+    <p-tabPanel header="Score">
+      <div class="flex gap-4">
+        <p
+          class="flex justify-content-start text-xs font-semibold text-blue-600"
+        >
+          Based on:
+        </p>
+        <select
+          name="demo"
+          id="#"
+          class="text-xs font-semibold p-0 border-round border-blue-600"
+        >
+          <option selected="selected" value="Overall">Overall</option>
+          <option value="python">Python</option>
+          <option value="java">Java</option>
+        </select>
+      </div>
+
+      <p-table [value]="users" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+          <tr class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <th>USERNAME</th>
+            <th>NAME</th>
+            <th>SCORE</th>
+            <th>LANGUAGE</th>
+            <th>ACTION</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+          <tr class="w-full text-sm text-left text-gray-800">
+            <td>{{user.username}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.score}}</td>
+            <td>{{user.language}}</td>
+            <td>
+              <button
+                class="text-white p-1 bg-red-400 border-round-sm border-none"
+              >
+                DELETE
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-tabPanel>
+  </p-tabView>
 </div>

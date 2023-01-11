@@ -8,3 +8,14 @@
 * {
   font-family: "Source Code Pro", monospace;
 }
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.content {
+  min-height: 87.86%;
+  padding: 50px 0;
+}
