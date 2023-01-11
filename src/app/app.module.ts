@@ -30,6 +30,8 @@ import {ToastModule} from 'primeng/toast';
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AUTH_SERVICE_TOKEN } from './services/utilities';
+import { LocalAuthService } from './services/local-auth.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,11 @@ import { RegisterComponent } from './components/register/register.component';
     ConfirmDialogModule,
     ToastModule
   ],
-  providers: [MessageService, ConfirmationService],
+  providers: [ 
+    MessageService, 
+    ConfirmationService,
+    { provide: AUTH_SERVICE_TOKEN, useClass: LocalAuthService }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
