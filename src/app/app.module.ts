@@ -22,6 +22,10 @@ import { CardModule } from 'primeng/card';
 import { AvatarModule } from 'primeng/avatar';
 import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+import {MessageService} from 'primeng/api';
+import {ToastModule} from 'primeng/toast';
 
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { LoginComponent } from './components/login/login.component';
@@ -53,8 +57,11 @@ import { RegisterComponent } from './components/register/register.component';
     InputTextareaModule,
     DynamicDialogModule,
     InputTextModule,
+    DialogModule,
+    ConfirmDialogModule,
+    ToastModule
   ],
-  providers: [],
+  providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
