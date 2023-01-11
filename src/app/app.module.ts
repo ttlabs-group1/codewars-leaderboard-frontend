@@ -32,6 +32,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AUTH_SERVICE_TOKEN } from './services/utilities';
 import { LocalAuthService } from './services/local-auth.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { LocalAuthService } from './services/local-auth.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     BrowserAnimationsModule,
     CardModule,
     ButtonModule,
