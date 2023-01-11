@@ -18,35 +18,9 @@ export class UserDetailPage {
 
   userDetail: UserDetail | undefined;
 
-  languages: any[] = [
-    {
-      language: 'Java',
-      rank: '6kyu',
-      score: 75,
-    },
-    {
-      language: 'Python',
-      rank: '7kyu',
-      score: 68,
-    },
-  ];
-
-  comments: any[] = [
-    'This is some awesome thinking!',
-    "What terrific math skills you're showing!",
-    'You are an amazing writer!',
-    'Wow! You have improved so much!',
-    'Nice idea!',
-    'You are showing excellent understanding!',
-    'This is clear, concise, and complete!',
-    'What a powerful argument!',
-    'I knew you could do it!',
-  ];
-
   constructor(
     private route: ActivatedRoute,
     private commentUiService: CommentUiService,
-
     @Inject(USER_DETAIL_SERVICE_TOKEN)
     private userDetailService: UserDetailService
   ) {
@@ -67,6 +41,7 @@ export class UserDetailPage {
         next: (value) => {
           if (value.success) {
             this.userDetail = value.data?.data;
+            console.log(this.userDetail);
           }
         },
         error: (error) => console.error(error.message),

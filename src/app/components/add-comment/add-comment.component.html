@@ -5,6 +5,7 @@
   [autoResize]="true"
   placeholder="Add a comment..."
   [style]="{ width: '100%', 'font-family': 'inherit' }"
+  [(ngModel)]="comment"
 ></textarea>
 <div class="w-100 flex justify-content-end mt-2">
   <button
@@ -13,5 +14,8 @@
     type="button"
     label="Add"
     class="p-button-success p-button-sm"
+    [disabled]="comment.length < 2"
+    [loading]="loading"
+    (click)="addComment()"
   ></button>
 </div>

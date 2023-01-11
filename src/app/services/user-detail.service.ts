@@ -6,5 +6,8 @@ import { UserDetail } from '../models/user-detail.model';
 export interface UserDetailService {
   getUserDetail(userId: string): Observable<Response<UserDetail>>;
 
-  addUserComment(userId: string, comment: string): Observable<Comment>;
+  addUserComment(
+    userId: string,
+    comment: string
+  ): Observable<Response<Comment>>;
 }

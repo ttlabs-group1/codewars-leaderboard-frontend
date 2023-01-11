@@ -1,4 +1,5 @@
 export interface UserDetail {
+  id: string;
   username: string;
   name: string;
   honor: number;
@@ -11,7 +12,7 @@ export interface UserDetail {
       score: number;
     };
     languages: {
-      java: {
+      [key: string]: {
         rank: string;
         name: string;
         color: string;
