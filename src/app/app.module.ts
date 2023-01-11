@@ -16,6 +16,8 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { AvatarModule } from 'primeng/avatar';
 import { TableModule } from 'primeng/table';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 
 @NgModule({
@@ -37,6 +39,7 @@ import { AddCommentComponent } from './components/add-comment/add-comment.compon
     ButtonModule,
     AvatarModule,
     TableModule,
+    InputTextareaModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

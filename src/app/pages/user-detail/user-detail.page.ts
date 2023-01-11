@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { CommentUiService } from 'src/app/services/comment-ui.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -7,13 +9,22 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./user-detail.page.css'],
 })
 export class UserDetailPage {
-  constructor(private route: ActivatedRoute) {}
+  userId!: string;
+  showAddComment!: boolean;
+  subscription: Subscription;
 
-  userId!: number;
+  constructor(
+    private route: ActivatedRoute,
+    private commentUiService: CommentUiService
+  ) {
+    this.subscription = this.commentUiService
+      .onToggle()
+      .subscribe((value) => (this.showAddComment = value));
+  }
 
-  // userDetail: any[] = [
-  //   {}
-  // ]
+  toggleAddComment(): void {
+    this.commentUiService.toggleAddComment();
+  }
 
   languages: any[] = [
     {
@@ -44,7 +55,11 @@ export class UserDetailPage {
     this.route.paramMap.subscribe((paramMap) => {
       console.log(paramMap.get('id'));
 
-      this.userId = Number(paramMap.get('id'));
+      this.userId = String(paramMap.get('id'));
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

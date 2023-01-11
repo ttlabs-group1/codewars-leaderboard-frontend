@@ -1,1 +1,17 @@
-<p>add-comment works!</p>
+<textarea
+  [rows]="3"
+  [cols]="30"
+  pInputTextarea
+  [autoResize]="true"
+  placeholder="Add a comment..."
+  [style]="{ width: '100%', 'font-family': 'inherit' }"
+></textarea>
+<div class="w-100 flex justify-content-end mt-2">
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="Add"
+    class="p-button-success p-button-sm"
+  ></button>
+</div>
