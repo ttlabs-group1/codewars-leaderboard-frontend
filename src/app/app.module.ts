@@ -22,16 +22,21 @@ import { CardModule } from 'primeng/card';
 import { AvatarModule } from 'primeng/avatar';
 import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ConfirmationService} from 'primeng/api';
-import {MessageService} from 'primeng/api';
-import {ToastModule} from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { AUTH_SERVICE_TOKEN } from './services/utilities';
+
+import {
+  AUTH_SERVICE_TOKEN,
+  USER_DETAIL_SERVICE_TOKEN,
+} from './services/utilities';
 import { LocalAuthService } from './services/local-auth.service';
+import { LocalUserDetailService } from './services/local-user-detail.service';
 
 @NgModule({
   declarations: [
@@ -61,12 +66,13 @@ import { LocalAuthService } from './services/local-auth.service';
     InputTextModule,
     DialogModule,
     ConfirmDialogModule,
-    ToastModule
+    ToastModule,
   ],
-  providers: [ 
-    MessageService, 
+  providers: [
+    MessageService,
     ConfirmationService,
-    { provide: AUTH_SERVICE_TOKEN, useClass: LocalAuthService }
+    { provide: AUTH_SERVICE_TOKEN, useClass: LocalAuthService },
+    { provide: USER_DETAIL_SERVICE_TOKEN, useClass: LocalUserDetailService },
   ],
   bootstrap: [AppComponent],
 })
