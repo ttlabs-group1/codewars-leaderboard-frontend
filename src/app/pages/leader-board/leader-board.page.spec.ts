@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LeaderBoardPage } from './leader-board.page';
 
-xdescribe('LeaderBoardPage', () => {
+describe('LeaderBoardPage', () => {
   let component: LeaderBoardPage;
   let fixture: ComponentFixture<LeaderBoardPage>;
 

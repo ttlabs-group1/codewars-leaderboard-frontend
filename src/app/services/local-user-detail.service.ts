@@ -20,38 +20,36 @@ export class LocalUserDetailService implements UserDetailService {
     'I knew you could do it!',
   ];
 
-  private static CODEWARS_USERS: UserDetail[] = [
-    {
-      id: '1',
-      username: 'mont.ana',
-      name: 'Ana Montana',
-      honor: 40,
-      clan: 'turntabl',
-      ranks: {
-        overall: {
+  private static readonly CODEWARS_USERS: UserDetail = {
+    id: '1',
+    username: 'mont.ana',
+    name: 'Ana Montana',
+    honor: 40,
+    clan: 'turntabl',
+    ranks: {
+      overall: {
+        rank: '-7',
+        name: '7 kyu',
+        color: 'white',
+        score: 22,
+      },
+      languages: {
+        java: {
           rank: '-7',
           name: '7 kyu',
           color: 'white',
           score: 22,
         },
-        languages: {
-          java: {
-            rank: '-7',
-            name: '7 kyu',
-            color: 'white',
-            score: 22,
-          },
-          python: {
-            rank: '-7',
-            name: '7 kyu',
-            color: 'white',
-            score: 22,
-          },
+        python: {
+          rank: '-7',
+          name: '7 kyu',
+          color: 'white',
+          score: 22,
         },
       },
-      comments: [...LocalUserDetailService.COMMENTS],
     },
-  ];
+    comments: [...LocalUserDetailService.COMMENTS],
+  };
 
   constructor() {}
 
@@ -59,7 +57,7 @@ export class LocalUserDetailService implements UserDetailService {
     return createObservable<Response<UserDetail>>({
       success: true,
       data: {
-        data: LocalUserDetailService.CODEWARS_USERS[0],
+        data: LocalUserDetailService.CODEWARS_USERS,
       },
     });
   }
@@ -68,8 +66,6 @@ export class LocalUserDetailService implements UserDetailService {
     userId: string,
     comment: string
   ): Observable<Response<Comment>> {
-    LocalUserDetailService.CODEWARS_USERS[0].comments.unshift(comment);
-
     return createObservable<Response<Comment>>({
       success: true,
       data: {

@@ -9,7 +9,7 @@ import { USER_DETAIL_SERVICE_TOKEN } from 'src/app/services/utilities';
 })
 export class AddCommentComponent {
   @Input() userId!: string;
-  @Output() onAddComment: EventEmitter<boolean> = new EventEmitter();
+  @Output() onAddComment: EventEmitter<string> = new EventEmitter();
 
   comment: string = '';
   loading: boolean = false;
@@ -27,7 +27,7 @@ export class AddCommentComponent {
       .subscribe({
         next: (value) => {
           if (value.success) {
-            this.onAddComment.emit(true);
+            this.onAddComment.emit(this.comment);
           }
           this.loading = false;
         },

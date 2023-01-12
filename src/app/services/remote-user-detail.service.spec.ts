@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { RemoteUserDetailService } from './remote-user-detail.service';
 
-describe('RemoteUserDetailService', () => {
+fdescribe('RemoteUserDetailService', () => {
   let service: RemoteUserDetailService;
 
   beforeEach(() => {

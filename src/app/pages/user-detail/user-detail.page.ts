@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Comment } from 'src/app/models/comment.model';
 import { UserDetail } from 'src/app/models/user-detail.model';
 import { CommentUiService } from 'src/app/services/comment-ui.service';
 import { UserDetailService } from 'src/app/services/user-detail.service';
@@ -31,6 +32,11 @@ export class UserDetailPage {
 
   toggleAddComment(): void {
     this.commentUiService.toggleAddComment();
+  }
+
+  onAddComment(comment: string): void {
+    this.toggleAddComment();
+    this.userDetail?.comments.unshift(comment);
   }
 
   ngOnInit() {
