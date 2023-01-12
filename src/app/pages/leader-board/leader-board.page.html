@@ -11,23 +11,13 @@
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-user>
-          <tr class="w-full text-sm text-left text-gray-8">
+          <tr class="w-full text-sm text-left">
             <td>{{user.username}}</td>
             <td>{{user.name}}</td>
             <td>{{user.honor}}</td>
             <td class="flex gap-1">
-              <a [routerLink]="['/user', user.codewarsId]"
-                ><button
-                  class="text-white p-1 bg-blue-400 border-round-sm border-none pointer"
-                >
-                  VIEW
-                </button></a
-              >
-              <button (click)="removeUser(user.codewarsId)"
-                class="text-white p-1 bg-red-400 border-round-sm border-none pointer"
-              >
-                DELETE
-              </button>
+              <p-button [routerLink]="['/user', user.id]" label="View" styleClass="p-button-sm"></p-button>
+              <p-button label="Delete" styleClass="p-button-sm p-button-danger" (click)="removeUser(user.codewarsId)"></p-button>
             </td>
           </tr>
         </ng-template>
@@ -60,7 +50,7 @@
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-user>
-          <tr class="w-full text-sm text-left text-gray-800">
+          <tr class="w-full text-sm text-left">
             <td>{{user.username}}</td>
             <td>{{user.name}}</td>
             <td *ngIf="filterValue == 'overall' else elseBlock">{{user.ranks.overall.score}}</td>
@@ -68,24 +58,20 @@
               <td>{{user.ranks.languages[filterValue].score}}</td>
             </ng-template>
             <td class="flex gap-1">
-              <a [routerLink]="['/user', user.id]"
-                ><button
-                  class="text-white p-1 bg-blue-400 border-round-sm border-none pointer"
-                >
-                  VIEW
-                </button></a
-              >
-              <button (click)="removeUser(user.codewarsId)"
-                class="text-white p-1 bg-red-400 border-round-sm border-none pointer"
-              >
-                DELETE
-              </button>
+              <p-button [routerLink]="['/user', user.id]" label="View" styleClass="p-button-sm"></p-button>
+              <p-button label="Delete" styleClass="p-button-sm p-button-danger" (click)="removeUser(user.codewarsId)"></p-button>
             </td>
           </tr>
         </ng-template>
       </p-table>
     </p-tabPanel>
   </p-tabView>
+  
   <p-toast></p-toast>
-  <p-confirmDialog header="Confirmation"></p-confirmDialog>
+  <p-confirmDialog header="Confirmation">
+    <ng-template pTemplate="footer">
+      <button type="button" pButton icon="pi pi-times" label="No" class="p-button-primary"></button>
+      <button type="button" pButton icon="pi pi-check" label="Yes" class="p-button-danger"></button>
+  </ng-template>
+  </p-confirmDialog>
 </div>
