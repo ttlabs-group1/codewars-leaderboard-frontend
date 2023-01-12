@@ -119,4 +119,13 @@ private static readonly users_filter: Filter[] = [
       }
     });
   }
+
+  removeUser(id: string): Observable<Response<string>> {
+    return createObservable<Response<string>>({
+      success: true,
+      data: {
+        data: "Deleted successfully"
+      }
+    });
+  }
 }
