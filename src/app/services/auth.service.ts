@@ -6,4 +6,5 @@ import { User } from "../models/user.model";
 export interface AuthService {
     login(credentials: Credentials): Observable<Response<User>>;
     register(credentials: Credentials): Observable<Response<string>>;
+    logout(sessionId: string): Observable<null>;
 }

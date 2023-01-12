@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Credentials } from 'src/app/models/credentials.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { AUTH_SERVICE_TOKEN, USER_STORAGE_KEY } from 'src/app/services/utilities';
+import { AppUserStore } from 'src/app/stores/app-user.store';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ export class LoginComponent implements OnDestroy {
 
   constructor(
     private router: Router,
+    private userStore: AppUserStore,
     @Inject(AUTH_SERVICE_TOKEN) private authService: AuthService
   ) {}
 
@@ -49,7 +51,7 @@ export class LoginComponent implements OnDestroy {
       .subscribe({
         next: value => {
           console.log('success');
-          localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(value.data?.data));
+          this.userStore.setUser(value.data?.data!);
           this.router.navigateByUrl('/leaderboard');
         },
         error: err => console.error(err)
