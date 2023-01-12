@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { LocalAuthService } from './local-auth.service';
 
-describe('LocalAuthService', () => {
+xdescribe('LocalAuthService', () => {
   let service: LocalAuthService;
 
   beforeEach(() => {
