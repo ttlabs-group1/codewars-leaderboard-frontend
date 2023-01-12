@@ -108,6 +108,7 @@ export class LeaderBoardPage {
     message: 'Do you want to delete this record?',
     header: 'Delete Confirmation',
     icon: 'pi pi-info-circle',
+    
     accept: () => {
       console.log(userId)
           this.messageService.add({severity:'success', summary: 'Success', detail: 'User deleted successfully.'})
