@@ -33,4 +33,8 @@ export class LocalAuthService implements AuthService {
       }
     });
   }
+
+  logout(sessionId: string): Observable<null> {
+    return createObservable<null>(null);
+  }
 }

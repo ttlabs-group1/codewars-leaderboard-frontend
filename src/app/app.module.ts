@@ -33,6 +33,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AUTH_SERVICE_TOKEN } from './services/utilities';
 import { LocalAuthService } from './services/local-auth.service';
 import { FormsModule } from '@angular/forms';
+import { AppUserStore } from './stores/app-user.store';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { FormsModule } from '@angular/forms';
   providers: [ 
     MessageService, 
     ConfirmationService,
+    AppUserStore,
     { provide: AUTH_SERVICE_TOKEN, useClass: LocalAuthService }
   ],
   bootstrap: [AppComponent],
