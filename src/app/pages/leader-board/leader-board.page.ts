@@ -112,6 +112,9 @@ export class LeaderBoardPage {
     accept: () => {
       console.log(userId)
           this.messageService.add({severity:'success', summary: 'Success', detail: 'User deleted successfully.'})
+      },
+      reject: () => {
+          
       }
     });
   }
