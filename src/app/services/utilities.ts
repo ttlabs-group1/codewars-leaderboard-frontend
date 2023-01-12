@@ -1,6 +1,8 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
+export const USER_STORAGE_KEY = 'user';
+
 export const AUTH_SERVICE_TOKEN = new InjectionToken<string>('auth-service');
 export const USER_DETAIL_SERVICE_TOKEN = new InjectionToken<string>(
   'user-detail-service'

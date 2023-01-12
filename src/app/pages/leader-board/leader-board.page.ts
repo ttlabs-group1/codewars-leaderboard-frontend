@@ -11,8 +11,41 @@ import { LeaderboardService } from 'src/app/services/leaderboard.service';
 })
 export class LeaderBoardPage {
   users_honors: Honor[] = [];
-  users_filter: Filter[] = [];
+  users_filter: any[] = [];
   filterValue: string = "overall";
+
+  language: any[] = [
+    {
+      "username": "walker00",
+      "codewarsId": "61d70ef5693e8e004ab6d06e",
+      "name": "Elvis Opoku Amoako",
+      "ranks": {
+          "languages": {
+              "java": {
+                  "rank": "-4",
+                  "name": "4 kyu",
+                  "color": "blue",
+                  "score": 1171
+              }
+          }
+      }
+  },
+  {
+      "username": "cyril",
+      "codewarsId": "63bd97c93b49e466ff3e7696",
+      "name": "Cyril Acquah",
+      "ranks": {
+          "languages": {
+              "java": {
+                  "rank": "-7",
+                  "name": "7 kyu",
+                  "color": "white",
+                  "score": 32
+              }
+          }
+      }
+    }
+  ]
 
   constructor(
     private confirmationService: ConfirmationService, 
@@ -26,17 +59,24 @@ export class LeaderBoardPage {
           console.log(value.data);
           if (value.data) this.users_honors = value.data.data;
         }
+      });
+
+      this.leaderboardService.getUsersByFilter(this.filterValue).subscribe({
+        next: value => {
+          console.log(value.data);
+          if (value.data) this.users_filter = value.data.data;
+        }
       })
     }
 
 
-  removeUser(){
+  removeUser(userId: string){
   this.confirmationService.confirm({
     message: 'Do you want to delete this record?',
     header: 'Delete Confirmation',
     icon: 'pi pi-info-circle',
     accept: () => {
-      console.log("Hello")
+      console.log(userId)
           this.messageService.add({severity:'success', summary: 'Success', detail: 'User deleted successfully.'})
       }
     });
@@ -49,7 +89,7 @@ export class LeaderBoardPage {
     this.leaderboardService.getUsersByFilter(this.filterValue).subscribe({
       next: value => {
         console.log(value.data);
-        if (value.data) this.users_filter = value.data.data
+        if (value.data) this.users_filter = this.language;
       }
     })
   }

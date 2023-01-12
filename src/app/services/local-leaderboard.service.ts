@@ -102,8 +102,8 @@ private static readonly users_filter: Filter[] = [
     })
   }
 
-  getUsersByFilter(language: string): Observable<Response<Filter[]>> {
-    return createObservable<Response<Filter[]>>({
+  getUsersByFilter(language: string): Observable<Response<any[]>> {
+    return createObservable<Response<any[]>>({
       success: true,
       data: {
         data: LocalLeaderboardService.users_filter

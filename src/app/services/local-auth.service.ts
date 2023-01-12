@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Auth } from '../models/auth.model';
+import { Credentials } from '../models/credentials.model';
 import { Response } from '../models/response.model';
 import { User } from '../models/user.model';
 import { AuthService } from './auth.service';
@@ -16,7 +16,7 @@ export class LocalAuthService implements AuthService {
 
   constructor() { }
 
-  login(credentials: Auth): Observable<Response<User>> {
+  login(credentials: Credentials): Observable<Response<User>> {
     return createObservable<Response<User>>({
       success: true,
       data: {
@@ -25,12 +25,16 @@ export class LocalAuthService implements AuthService {
     });
   }
 
-  register(credentials: Auth): Observable<Response<string>> {
+  register(credentials: Credentials): Observable<Response<string>> {
     return createObservable<Response<string>>({
       success: true,
       data: {
         data: "registration successful"
       }
     });
+  }
+
+  logout(sessionId: string): Observable<null> {
+    return createObservable<null>(null);
   }
 }

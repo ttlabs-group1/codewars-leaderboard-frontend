@@ -34,6 +34,8 @@ import { AUTH_SERVICE_TOKEN, LEADERBOARD_SERVICE_TOKEN } from './services/utilit
 import { LocalAuthService } from './services/local-auth.service';
 import { LocalLeaderboardService } from './services/local-leaderboard.service';
 
+import { FormsModule } from '@angular/forms';
+import { AppUserStore } from './stores/app-user.store';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { LocalLeaderboardService } from './services/local-leaderboard.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     BrowserAnimationsModule,
     CardModule,
     ButtonModule,
@@ -68,8 +71,10 @@ import { LocalLeaderboardService } from './services/local-leaderboard.service';
   providers: [ 
     MessageService, 
     ConfirmationService,
+    AppUserStore,
     { provide: AUTH_SERVICE_TOKEN, useClass: LocalAuthService },
-    { provide: LEADERBOARD_SERVICE_TOKEN, useClass: LocalLeaderboardService }
+    { provide: LEADERBOARD_SERVICE_TOKEN, useClass: LocalLeaderboardService },
+    { provide: AUTH_SERVICE_TOKEN, useClass: LocalAuthService }
   ],
   bootstrap: [AppComponent],
 })

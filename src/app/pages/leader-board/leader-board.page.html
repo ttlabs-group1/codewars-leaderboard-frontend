@@ -16,7 +16,6 @@
             <td>{{user.name}}</td>
             <td>{{user.honor}}</td>
             <td class="flex gap-1">
-              <!-- <button class="text-white p-1 bg-blue-400 border-round-sm border-none"><a [routerLink]="['/user', user.id]">VIEW</a></button>  -->
               <a [routerLink]="['/user', user.codewarsId]"
                 ><button
                   class="text-white p-1 bg-blue-400 border-round-sm border-none pointer"
@@ -24,7 +23,7 @@
                   VIEW
                 </button></a
               >
-              <button (click)="removeUser()"
+              <button (click)="removeUser(user.codewarsId)"
                 class="text-white p-1 bg-red-400 border-round-sm border-none pointer"
               >
                 DELETE
@@ -43,7 +42,6 @@
         </p>
         <select (change)="onChange($event.target)"
           name="demo"
-          id="#"
           class="text-xs font-semibold p-0 border-round border-blue-600"
         >
           <option selected="selected" value="overall">Overall</option>
@@ -65,9 +63,11 @@
           <tr class="w-full text-sm text-left text-gray-800">
             <td>{{user.username}}</td>
             <td>{{user.name}}</td>
-            <td>{{user.ranks.languages.python.score}}</td>
+            <td *ngIf="filterValue == 'overall' else elseBlock">{{user.ranks.overall.score}}</td>
+            <ng-template #elseBlock>
+              <td>{{user.ranks.languages[filterValue].score}}</td>
+            </ng-template>
             <td class="flex gap-1">
-              <!-- <button class="text-white p-1 bg-blue-400 border-round-sm border-none"><a [routerLink]="['/user', user.id]">VIEW</a></button>  -->
               <a [routerLink]="['/user', user.id]"
                 ><button
                   class="text-white p-1 bg-blue-400 border-round-sm border-none pointer"
@@ -75,7 +75,7 @@
                   VIEW
                 </button></a
               >
-              <button (click)="removeUser()"
+              <button (click)="removeUser(user.codewarsId)"
                 class="text-white p-1 bg-red-400 border-round-sm border-none pointer"
               >
                 DELETE
