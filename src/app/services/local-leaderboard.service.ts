@@ -110,4 +110,13 @@ private static readonly users_filter: Filter[] = [
       }
     })
   }
+
+  addUser(username: string): Observable<Response<string>> {
+    return createObservable<Response<string>>({
+      success: true,
+      data: {
+        data: 'user added'
+      }
+    });
+  }
 }

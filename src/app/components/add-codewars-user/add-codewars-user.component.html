@@ -1,0 +1,8 @@
+<form action="#">
+    <small class="text-xs text-red-600">{{ nameError }}</small>
+    <input type="text" name="name" id="name" pInputText placeholder="Codewars username" class="w-full mb-2" [style]="{ 'font-family': 'inherit' }" [(ngModel)]="codewarsUser" />
+    <small class="text-xs text-red-600">{{ submitError }}</small>
+    <div class="flex justify-content-center">
+        <p-button type="submit" label="Add" [loading]="loading" (click)="addUser()"></p-button>
+    </div>
+</form>

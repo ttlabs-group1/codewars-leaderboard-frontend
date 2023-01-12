@@ -43,6 +43,7 @@ import { LocalLeaderboardService } from './services/local-leaderboard.service';
 
 import { AppUserStore } from './stores/app-user.store';
 import { FormsModule } from '@angular/forms';
+import { AddCodewarsUserComponent } from './components/add-codewars-user/add-codewars-user.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { FormsModule } from '@angular/forms';
     AddCommentComponent,
     LoginComponent,
     RegisterComponent,
+    AddCodewarsUserComponent,
   ],
   imports: [
     BrowserModule,
