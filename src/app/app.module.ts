@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,10 +24,10 @@ import { CardModule } from 'primeng/card';
 import { AvatarModule } from 'primeng/avatar';
 import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ConfirmationService} from 'primeng/api';
-import {MessageService} from 'primeng/api';
-import {ToastModule} from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { LoginComponent } from './components/login/login.component';
@@ -64,13 +66,15 @@ import { AppUserStore } from './stores/app-user.store';
     InputTextModule,
     DialogModule,
     ConfirmDialogModule,
-    ToastModule
+    ToastModule,
+    HttpClientModule,
+    FormsModule,
   ],
-  providers: [ 
-    MessageService, 
+  providers: [
+    MessageService,
     ConfirmationService,
     AppUserStore,
-    { provide: AUTH_SERVICE_TOKEN, useClass: LocalAuthService }
+    { provide: AUTH_SERVICE_TOKEN, useClass: LocalAuthService },
   ],
   bootstrap: [AppComponent],
 })
