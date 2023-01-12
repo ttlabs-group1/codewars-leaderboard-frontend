@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Credentials } from 'src/app/models/credentials.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { AUTH_SERVICE_TOKEN } from 'src/app/services/utilities';
+import { AUTH_SERVICE_TOKEN, USER_STORAGE_KEY } from 'src/app/services/utilities';
 
 @Component({
   selector: 'app-login',
@@ -49,6 +49,7 @@ export class LoginComponent implements OnDestroy {
       .subscribe({
         next: value => {
           console.log('success');
+          localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(value.data?.data));
           this.router.navigateByUrl('/leaderboard');
         },
         error: err => console.error(err)
