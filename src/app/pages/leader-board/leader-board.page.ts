@@ -16,31 +16,64 @@ export class LeaderBoardPage {
 
   language: any[] = [
     {
-      "username": "walker00",
+      "username": "ernest",
       "codewarsId": "61d70ef5693e8e004ab6d06e",
-      "name": "Elvis Opoku Amoako",
+      "name": "Kofi Ernest",
       "ranks": {
+          "overall": {
+              "rank": "-4",
+              "name": "4 kyu",
+              "color": "blue",
+              "score": 1
+          },
+          "languages": {
+              "python": {
+                  "rank": "-4",
+                  "name": "4 kyu",
+                  "color": "blue",
+                  "score": 12
+              }
+          }
+      }
+    },
+    {
+      "username": "jdoe",
+      "codewarsId": "61d70ef5693e8e004ab6d06e2",
+      "name": "John Doe",
+      "ranks": {
+          "overall": {
+              "rank": "-4",
+              "name": "4 kyu",
+              "color": "blue",
+              "score": 2
+          },
+          "languages": {
+              "python": {
+                  "rank": "-4",
+                  "name": "4 kyu",
+                  "color": "blue",
+                  "score": 24
+              }
+          }
+      }
+    },
+    {
+      "username": "kwame.sarfo",
+      "codewarsId": "61d70ef5693e8e004ab6d06e3",
+      "name": "Kwame Sarfo",
+      "ranks": {
+          "overall": {
+              "rank": "-4",
+              "name": "4 kyu",
+              "color": "blue",
+              "score": 3
+          },
           "languages": {
               "java": {
                   "rank": "-4",
                   "name": "4 kyu",
                   "color": "blue",
-                  "score": 1171
-              }
-          }
-      }
-  },
-  {
-      "username": "cyril",
-      "codewarsId": "63bd97c93b49e466ff3e7696",
-      "name": "Cyril Acquah",
-      "ranks": {
-          "languages": {
-              "java": {
-                  "rank": "-7",
-                  "name": "7 kyu",
-                  "color": "white",
-                  "score": 32
+                  "score": 36
               }
           }
       }

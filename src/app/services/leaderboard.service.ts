@@ -6,4 +6,6 @@ export interface LeaderboardService {
   getUsersByHonor(): Observable<Response<Honor[]>>;
 
   getUsersByFilter(language: string): Observable<Response<Filter[]>>;
+
+  removeUser(id: string): Observable<Response<string>>;
 }
