@@ -6,6 +6,7 @@ import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { AUTH_SERVICE_TOKEN } from 'src/app/services/utilities';
 import { AppUserStore } from 'src/app/stores/app-user.store';
+import { AddCodewarsUserComponent } from '../add-codewars-user/add-codewars-user.component';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
 
@@ -59,6 +60,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
   showLogin() {
     this.ref = this.dialogService.open(LoginComponent, {
       header: 'Welcome Back!',
+      width: '30%'
+    });
+  }
+
+  showAddCodewarsUser() {
+    this.ref = this.dialogService.open(AddCodewarsUserComponent, {
+      header: 'Add Codewars User',
       width: '30%'
     });
   }

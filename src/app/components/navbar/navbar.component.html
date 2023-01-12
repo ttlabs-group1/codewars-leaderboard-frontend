@@ -4,7 +4,8 @@
   <h3 class="brand" routerLink="/">Codewars Leaderboard</h3>
   <div *ngIf="loggedInUser; else auth" class="flex align-items-center gap-3">
     <p>{{ loggedInUser.fullName }}</p>
-    <p-button label="Logout" styleClass="p-button-sm" (click)="logout()"></p-button>
+    <p-button label="Add User" styleClass="p-button-sm p-button-success" (click)="showAddCodewarsUser()"></p-button>
+    <p-button label="Logout" styleClass="p-button-sm p-button-danger" (click)="logout()"></p-button>
   </div>
   <ng-template #auth>
     <div class="flex gap-3">

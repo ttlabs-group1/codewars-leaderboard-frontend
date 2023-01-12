@@ -6,4 +6,6 @@ export interface LeaderboardService {
   getUsersByHonor(): Observable<Response<Honor[]>>;
 
   getUsersByFilter(language: string): Observable<Response<Filter[]>>;
+
+  addUser(username: string): Observable<Response<string>>;
 }
