@@ -67,7 +67,6 @@ import { AppUserStore } from './stores/app-user.store';
     ConfirmDialogModule,
     ToastModule,
     HttpClientModule,
-    FormsModule,
   ],
   providers: [
     MessageService,
