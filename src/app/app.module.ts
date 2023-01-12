@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,6 +38,8 @@ import {
 } from './services/utilities';
 import { LocalAuthService } from './services/local-auth.service';
 import { LocalUserDetailService } from './services/local-user-detail.service';
+import { AppUserStore } from './stores/app-user.store';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,7 @@ import { LocalUserDetailService } from './services/local-user-detail.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     BrowserAnimationsModule,
     CardModule,
     ButtonModule,
@@ -68,11 +71,12 @@ import { LocalUserDetailService } from './services/local-user-detail.service';
     DialogModule,
     ConfirmDialogModule,
     ToastModule,
-    FormsModule,
+    HttpClientModule,
   ],
   providers: [
     MessageService,
     ConfirmationService,
+    AppUserStore,
     { provide: AUTH_SERVICE_TOKEN, useClass: LocalAuthService },
     { provide: USER_DETAIL_SERVICE_TOKEN, useClass: LocalUserDetailService },
   ],
