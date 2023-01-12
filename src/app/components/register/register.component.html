@@ -1,4 +1,5 @@
-<form action="#">
+<form (submit)="register()">
+  <small class="text-xs text-red-600">{{ nameError }}</small>
   <input
     type="text"
     name="name"
@@ -7,7 +8,9 @@
     placeholder="Full name"
     class="w-full mb-2"
     [style]="{ 'font-family': 'inherit' }"
+    [(ngModel)]="credentials.fullName"
   />
+  <small class="text-xs text-red-600">{{ usernameError }}</small>
   <input
     type="text"
     name="username"
@@ -16,7 +19,9 @@
     placeholder="Username"
     class="w-full mb-2"
     [style]="{ 'font-family': 'inherit' }"
+    [(ngModel)]="credentials.username"
   />
+  <small class="text-xs text-red-600">{{ passwordError }}</small>
   <input
     type="password"
     name="password"
@@ -25,7 +30,9 @@
     placeholder="Password"
     class="w-full mb-2"
     [style]="{ 'font-family': 'inherit' }"
+    [(ngModel)]="credentials.password"
   />
+  <small class="text-xs text-red-600">{{ confirmError }}</small>
   <input
     type="password"
     name="confirm"
@@ -34,6 +41,7 @@
     placeholder="Confirm password"
     class="w-full mb-2"
     [style]="{ 'font-family': 'inherit' }"
+    [(ngModel)]="confirmPassword"
   />
 
   <div class="flex justify-content-center">
