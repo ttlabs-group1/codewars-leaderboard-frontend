@@ -31,8 +31,10 @@ import { ToastModule } from 'primeng/toast';
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { AUTH_SERVICE_TOKEN } from './services/utilities';
+import { AUTH_SERVICE_TOKEN, LEADERBOARD_SERVICE_TOKEN } from './services/utilities';
 import { LocalAuthService } from './services/local-auth.service';
+import { LocalLeaderboardService } from './services/local-leaderboard.service';
+
 import { FormsModule } from '@angular/forms';
 import { AppUserStore } from './stores/app-user.store';
 
@@ -73,6 +75,7 @@ import { AppUserStore } from './stores/app-user.store';
     ConfirmationService,
     AppUserStore,
     { provide: AUTH_SERVICE_TOKEN, useClass: LocalAuthService },
+    { provide: LEADERBOARD_SERVICE_TOKEN, useClass: LocalLeaderboardService },
   ],
   bootstrap: [AppComponent],
 })
