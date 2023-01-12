@@ -34,10 +34,13 @@ import { RegisterComponent } from './components/register/register.component';
 
 import {
   AUTH_SERVICE_TOKEN,
+  LEADERBOARD_SERVICE_TOKEN,
   USER_DETAIL_SERVICE_TOKEN,
 } from './services/utilities';
-import { LocalAuthService } from './services/local-auth.service';
 import { LocalUserDetailService } from './services/local-user-detail.service';
+import { LocalAuthService } from './services/local-auth.service';
+import { LocalLeaderboardService } from './services/local-leaderboard.service';
+
 import { AppUserStore } from './stores/app-user.store';
 import { FormsModule } from '@angular/forms';
 
@@ -79,6 +82,7 @@ import { FormsModule } from '@angular/forms';
     AppUserStore,
     { provide: AUTH_SERVICE_TOKEN, useClass: LocalAuthService },
     { provide: USER_DETAIL_SERVICE_TOKEN, useClass: LocalUserDetailService },
+    { provide: LEADERBOARD_SERVICE_TOKEN, useClass: LocalLeaderboardService },
   ],
   bootstrap: [AppComponent],
 })

@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService} from 'primeng/api';
+import { Filter, Honor } from 'src/app/models/leaderboard.model';
+import { LEADERBOARD_SERVICE_TOKEN } from 'src/app/services/utilities';
+import { LeaderboardService } from 'src/app/services/leaderboard.service';
 
 @Component({
   selector: 'app-leader-board',
@@ -7,115 +10,87 @@ import { ConfirmationService, MessageService} from 'primeng/api';
   styleUrls: ['./leader-board.page.css']
 })
 export class LeaderBoardPage {
-  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) {}
-  
+  users_honors: Honor[] = [];
+  users_filter: any[] = [];
+  filterValue: string = "overall";
 
-  users_honors: any[] = [
+  language: any[] = [
     {
-        "username": "walker00",
-        "name": "Elvis Opoku Amoako",
-        "honor": 965,
-        "clan": "turntabl",
-        "ranks": {
-            "overall": {
-                "rank": "-4",
-                "name": "4 kyu",
-                "color": "blue",
-                "score": 1171
-            },
-            "languages": {
-                "python": {
-                    "rank": "-4",
-                    "name": "4 kyu",
-                    "color": "blue",
-                    "score": 1171
-                },
-                "java": {
-                    "rank": "-7",
-                    "name": "7 kyu",
-                    "color": "white",
-                    "score": 32
-                },
-                "scala": {
-                    "rank": "-8",
-                    "name": "8 kyu",
-                    "color": "white",
-                    "score": 8
-                }
-            }
-        },
-        "comments": []
-    },
-    {
-        "username": "EveNyarango",
-        "name": "Eve Nyarango",
-        "honor": 360,
-        "clan": "turntabl",
-        "ranks": {
-            "overall": {
-                "rank": "-5",
-                "name": "5 kyu",
-                "color": "yellow",
-                "score": 362
-            },
-            "languages": {
-                "javascript": {
-                    "rank": "-6",
-                    "name": "6 kyu",
-                    "color": "yellow",
-                    "score": 81
-                },
-                "java": {
-                    "rank": "-6",
-                    "name": "6 kyu",
-                    "color": "yellow",
-                    "score": 185
-                },
-                "python": {
-                    "rank": "-8",
-                    "name": "8 kyu",
-                    "color": "white",
-                    "score": 2
-                },
-                "typescript": {
-                    "rank": "-6",
-                    "name": "6 kyu",
-                    "color": "yellow",
-                    "score": 128
-                }
-            }
-        },
-        "comments": [
-            {
-                "commentText": "actually testing again"
-            },
-            {
-                "commentText": "actually testing again 1"
-            },
-            {
-                "commentText": "actually testing again 2"
-            }
-        ]
-    },
-   ];
+      "username": "walker00",
+      "codewarsId": "61d70ef5693e8e004ab6d06e",
+      "name": "Elvis Opoku Amoako",
+      "ranks": {
+          "languages": {
+              "java": {
+                  "rank": "-4",
+                  "name": "4 kyu",
+                  "color": "blue",
+                  "score": 1171
+              }
+          }
+      }
+  },
+  {
+      "username": "cyril",
+      "codewarsId": "63bd97c93b49e466ff3e7696",
+      "name": "Cyril Acquah",
+      "ranks": {
+          "languages": {
+              "java": {
+                  "rank": "-7",
+                  "name": "7 kyu",
+                  "color": "white",
+                  "score": 32
+              }
+          }
+      }
+    }
+  ]
 
-  users: any[] = [{
-    username: "frederick.arthur",
-    name: "Frederick Arthur",
-    score: 500,
-    language: "Python",
-    id: 4
-  }];
+  constructor(
+    private confirmationService: ConfirmationService, 
+    private messageService: MessageService,
+    @Inject(LEADERBOARD_SERVICE_TOKEN) private leaderboardService: LeaderboardService
+    ) {}
 
-  removeUser(){
+    ngOnInit(): void {
+      this.leaderboardService.getUsersByHonor().subscribe({
+        next: value => {
+          console.log(value.data);
+          if (value.data) this.users_honors = value.data.data;
+        }
+      });
+
+      this.leaderboardService.getUsersByFilter(this.filterValue).subscribe({
+        next: value => {
+          console.log(value.data);
+          if (value.data) this.users_filter = value.data.data;
+        }
+      })
+    }
+
+
+  removeUser(userId: string){
   this.confirmationService.confirm({
     message: 'Do you want to delete this record?',
     header: 'Delete Confirmation',
     icon: 'pi pi-info-circle',
     accept: () => {
-      console.log("Hello")
+      console.log(userId)
           this.messageService.add({severity:'success', summary: 'Success', detail: 'User deleted successfully.'})
       }
-});
+    });
+  }
+
+
+  onChange($event: any){
+    this.filterValue = $event.value.toLowerCase();
+    console.log(this.filterValue);
+    this.leaderboardService.getUsersByFilter(this.filterValue).subscribe({
+      next: value => {
+        console.log(value.data);
+        if (value.data) this.users_filter = this.language;
+      }
+    })
   }
 }
