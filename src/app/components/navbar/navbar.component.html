@@ -6,9 +6,15 @@
   </h2>
   <div *ngIf="loggedInUser; else auth" class="flex align-items-center gap-3">
     <p>{{ loggedInUser.fullName }}</p>
+
+    <p-button
+      label="Add User"
+      styleClass="p-button-sm p-button-success"
+      (click)="showAddCodewarsUser()"
+    ></p-button>
     <p-button
       label="Logout"
-      styleClass="p-button-sm"
+      styleClass="p-button-sm p-button-danger"
       (click)="logout()"
     ></p-button>
   </div>
