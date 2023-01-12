@@ -31,12 +31,19 @@ import { ToastModule } from 'primeng/toast';
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { AUTH_SERVICE_TOKEN, LEADERBOARD_SERVICE_TOKEN } from './services/utilities';
+
+import {
+  AUTH_SERVICE_TOKEN,
+  LEADERBOARD_SERVICE_TOKEN,
+  USER_DETAIL_SERVICE_TOKEN,
+} from './services/utilities';
+import { LocalUserDetailService } from './services/local-user-detail.service';
 import { LocalAuthService } from './services/local-auth.service';
 import { LocalLeaderboardService } from './services/local-leaderboard.service';
 
-import { FormsModule } from '@angular/forms';
 import { AppUserStore } from './stores/app-user.store';
+import { FormsModule } from '@angular/forms';
+import { AddCodewarsUserComponent } from './components/add-codewars-user/add-codewars-user.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +57,7 @@ import { AppUserStore } from './stores/app-user.store';
     AddCommentComponent,
     LoginComponent,
     RegisterComponent,
+    AddCodewarsUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +83,7 @@ import { AppUserStore } from './stores/app-user.store';
     ConfirmationService,
     AppUserStore,
     { provide: AUTH_SERVICE_TOKEN, useClass: LocalAuthService },
+    { provide: USER_DETAIL_SERVICE_TOKEN, useClass: LocalUserDetailService },
     { provide: LEADERBOARD_SERVICE_TOKEN, useClass: LocalLeaderboardService },
   ],
   bootstrap: [AppComponent],

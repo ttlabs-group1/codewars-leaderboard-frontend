@@ -7,5 +7,7 @@ export interface LeaderboardService {
 
   getUsersByFilter(language: string): Observable<Response<Filter[]>>;
 
+  addUser(username: string): Observable<Response<string>>;
+
   removeUser(id: string): Observable<Response<string>>;
 }

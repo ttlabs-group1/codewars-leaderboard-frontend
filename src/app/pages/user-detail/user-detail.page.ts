@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Comment } from 'src/app/models/comment.model';
+import { UserDetail } from 'src/app/models/user-detail.model';
 import { CommentUiService } from 'src/app/services/comment-ui.service';
+import { UserDetailService } from 'src/app/services/user-detail.service';
+import { USER_DETAIL_SERVICE_TOKEN } from 'src/app/services/utilities';
 
 @Component({
   selector: 'app-user-detail',
@@ -13,9 +17,13 @@ export class UserDetailPage {
   showAddComment!: boolean;
   subscription: Subscription;
 
+  userDetail: UserDetail | undefined;
+
   constructor(
     private route: ActivatedRoute,
-    private commentUiService: CommentUiService
+    private commentUiService: CommentUiService,
+    @Inject(USER_DETAIL_SERVICE_TOKEN)
+    private userDetailService: UserDetailService
   ) {
     this.subscription = this.commentUiService
       .onToggle()
@@ -26,36 +34,24 @@ export class UserDetailPage {
     this.commentUiService.toggleAddComment();
   }
 
-  languages: any[] = [
-    {
-      language: 'Java',
-      rank: '6kyu',
-      score: 75,
-    },
-    {
-      language: 'Python',
-      rank: '7kyu',
-      score: 68,
-    },
-  ];
-
-  comments: any[] = [
-    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
-    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
-    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
-    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
-    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
-    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
-    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
-    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
-    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, fugiat?',
-  ];
+  onAddComment(comment: string): void {
+    this.toggleAddComment();
+    this.userDetail?.comments.unshift(comment);
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap) => {
-      console.log(paramMap.get('id'));
-
       this.userId = String(paramMap.get('id'));
+
+      this.userDetailService.getUserDetail(this.userId).subscribe({
+        next: (value) => {
+          if (value.success) {
+            this.userDetail = value.data?.data;
+            console.log(this.userDetail);
+          }
+        },
+        error: (error) => console.error(error.message),
+      });
     });
   }
 

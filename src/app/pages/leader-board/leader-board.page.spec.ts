@@ -8,9 +8,8 @@ describe('LeaderBoardPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LeaderBoardPage ]
-    })
-    .compileComponents();
+      declarations: [LeaderBoardPage],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LeaderBoardPage);
     component = fixture.componentInstance;
