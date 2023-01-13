@@ -1,3 +1,5 @@
+import { Comment } from './comment.model';
+
 export interface UserDetail {
   id: string;
   username: string;
@@ -20,5 +22,5 @@ export interface UserDetail {
       };
     };
   };
-  comments: string[];
+  comments: Comment[];
 }

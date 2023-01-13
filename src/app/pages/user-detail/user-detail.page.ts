@@ -36,7 +36,7 @@ export class UserDetailPage {
 
   onAddComment(comment: string): void {
     this.toggleAddComment();
-    this.userDetail?.comments.unshift(comment);
+    this.userDetail?.comments.unshift({ commentText: comment, commentId: '1' });
   }
 
   ngOnInit() {

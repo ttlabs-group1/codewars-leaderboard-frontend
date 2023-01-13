@@ -3,21 +3,25 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Credentials } from 'src/app/models/credentials.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { AUTH_SERVICE_TOKEN, SESSION_KEY, setCookie, USER_STORAGE_KEY } from 'src/app/services/utilities';
+import {
+  AUTH_SERVICE_TOKEN,
+  SESSION_KEY,
+  setCookie,
+  USER_STORAGE_KEY,
+} from 'src/app/services/utilities';
 import { AppUserStore } from 'src/app/stores/app-user.store';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnDestroy {
-
   credentials: Credentials = {
     username: '',
-    password: ''
+    password: '',
   };
-  
+
   usernameError = '';
   passwordError = '';
 
@@ -40,11 +44,11 @@ export class LoginComponent implements OnDestroy {
     let errors = false;
     this.clearErrorMessages();
     if (!this.isValidUsername(this.credentials.username)) {
-      this.usernameError = 'Invalid username.'
+      this.usernameError = 'Invalid username.';
       errors = true;
     }
     if (!this.isValidPassword(this.credentials.password)) {
-      this.passwordError = 'Invalid password.'
+      this.passwordError = 'Invalid password.';
       errors = true;
     }
     if (errors) {
@@ -53,17 +57,22 @@ export class LoginComponent implements OnDestroy {
     }
 
     this.authSubscription?.unsubscribe();
-    this.authSubscription = this.authService.login(this.credentials)
-      .subscribe({
-        next: value => {
-          console.log('success');
-          this.userStore.setUser(value.body?.data?.data!);
-          setCookie(SESSION_KEY, value.headers.get("Set-Cookie")!, 1);
-          location.pathname = '/leaderboard';
-        },
-        error: err => console.error(err),
-        complete: () => this.loading = false
-      });
+    try {
+      this.authSubscription = this.authService
+        .login(this.credentials)
+        .subscribe({
+          next: (value) => {
+            console.log('success');
+            this.userStore.setUser(value.body?.data?.data!);
+            setCookie(SESSION_KEY, value.headers.get('Set-Cookie')!, 1);
+            location.pathname = '/leaderboard';
+          },
+          error: (err) => console.error(err),
+          complete: () => (this.loading = false),
+        });
+    } finally {
+      this.loading = false;
+    }
   }
 
   isValidUsername(username: string): boolean {
