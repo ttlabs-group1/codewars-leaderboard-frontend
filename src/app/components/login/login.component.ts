@@ -21,6 +21,8 @@ export class LoginComponent implements OnDestroy {
   usernameError = '';
   passwordError = '';
 
+  loading = false;
+
   private authSubscription?: Subscription;
 
   constructor(
@@ -34,6 +36,7 @@ export class LoginComponent implements OnDestroy {
   }
 
   login() {
+    this.loading = true;
     let errors = false;
     this.clearErrorMessages();
     if (!this.isValidUsername(this.credentials.username)) {
@@ -44,7 +47,10 @@ export class LoginComponent implements OnDestroy {
       this.passwordError = 'Invalid password.'
       errors = true;
     }
-    if (errors) return;
+    if (errors) {
+      this.loading = false;
+      return;
+    }
 
     this.authSubscription?.unsubscribe();
     this.authSubscription = this.authService.login(this.credentials)
@@ -52,9 +58,10 @@ export class LoginComponent implements OnDestroy {
         next: value => {
           console.log('success');
           this.userStore.setUser(value.data?.data!);
-          this.router.navigateByUrl('/leaderboard');
+          location.pathname = '/leaderboard';
         },
-        error: err => console.error(err)
+        error: err => console.error(err),
+        complete: () => this.loading = false
       });
   }
 

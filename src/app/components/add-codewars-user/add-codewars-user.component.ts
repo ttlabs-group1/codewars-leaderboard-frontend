@@ -1,4 +1,5 @@
 import { Component, Inject, OnDestroy } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { LeaderboardService } from 'src/app/services/leaderboard.service';
 import { LEADERBOARD_SERVICE_TOKEN } from 'src/app/services/utilities';
@@ -17,7 +18,10 @@ export class AddCodewarsUserComponent implements OnDestroy {
 
   private leaderboardSubscription?: Subscription;
 
-  constructor(@Inject(LEADERBOARD_SERVICE_TOKEN) private leaderboarService: LeaderboardService) {}
+  constructor(
+    private messageService: MessageService,
+    @Inject(LEADERBOARD_SERVICE_TOKEN) private leaderboarService: LeaderboardService
+  ) {}
 
   ngOnDestroy(): void {
       this.leaderboardSubscription?.unsubscribe();
@@ -34,10 +38,15 @@ export class AddCodewarsUserComponent implements OnDestroy {
     this.leaderboardSubscription?.unsubscribe();
     this.leaderboardSubscription = this.leaderboarService.addUser(this.codewarsUser)
       .subscribe({
-        next: value => console.log('successful'),
+        next: value => location.reload(),
         error: err => {
           console.error(err);
           this.submitError = err;
+          this.messageService.add({
+            severity: 'danger',
+            summary: 'Operation Failed!',
+            detail: err
+          });
         },
         complete: () => this.loading = false
       });

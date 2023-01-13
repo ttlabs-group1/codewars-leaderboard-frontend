@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Credentials } from 'src/app/models/credentials.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { AUTH_SERVICE_TOKEN } from 'src/app/services/utilities';
+import { AppUserStore } from 'src/app/stores/app-user.store';
 
 @Component({
   selector: 'app-register',
@@ -24,10 +25,13 @@ export class RegisterComponent {
   passwordError = '';
   confirmError = '';
 
+  loading = false;
+
   private authSubscription?: Subscription;
 
   constructor(
     private router: Router,
+    private userStore: AppUserStore,
     @Inject(AUTH_SERVICE_TOKEN) private authService: AuthService
   ) {}
 
@@ -36,6 +40,7 @@ export class RegisterComponent {
   }
 
   register() {
+    this.loading = true;
     let errors = false;
     this.clearErrorMessages();
     if (!this.isValidName(this.credentials.fullName!)) {
@@ -54,15 +59,36 @@ export class RegisterComponent {
       this.confirmError = 'Passwords mismatched.'
       errors = true;
     }
-    if (errors) return;
+    if (errors) {
+      this.loading = false;
+      return;
+    }
 
     this.authSubscription?.unsubscribe();
     this.authSubscription = this.authService.login(this.credentials)
       .subscribe({
         next: value => {
-          console.log('success');
+          // Login user
+          this.login();
         },
-        error: err => console.error(err)
+        error: err => { 
+          console.error(err);
+          this.loading = false;
+        }
+      });
+  }
+
+  login(): void {
+    this.authSubscription?.unsubscribe();
+    this.authSubscription = this.authService.login(this.credentials)
+      .subscribe({
+        next: value => {
+          console.log('success');
+          this.userStore.setUser(value.data?.data!);
+          location.pathname = '/leaderboard';
+        },
+        error: err => console.error(err),
+        complete: () => this.loading = false
       });
   }
 

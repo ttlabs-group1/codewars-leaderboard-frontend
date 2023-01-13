@@ -1,5 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.model';
@@ -22,11 +23,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   loggedInUser?: User;
 
+  loading = false;
+
   private userStoreSubscription?: Subscription;
   private authServiceSubscription?: Subscription;
 
   constructor(
     private router: Router,
+    private messageService: MessageService,
     public dialogService: DialogService,
     private userStore: AppUserStore,
     @Inject(AUTH_SERVICE_TOKEN) private authService: AuthService
@@ -72,6 +76,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   logout() {
+    this.loading = true;
     this.authServiceSubscription?.unsubscribe();
     this.authServiceSubscription = this.authService.logout("JSESSIONID")
       .subscribe({
@@ -79,7 +84,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
           this.userStore.removeUser();
           this.router.navigateByUrl('/');
         },
-        error: err => console.error(err)
+        error: err => { 
+          console.error(err);
+          this.messageService.add({ severity: 'danger', summary: 'Logout failed!', detail: 'Please try again.' })
+        },
+        complete: () => this.loading = false
       });
   }
 }
