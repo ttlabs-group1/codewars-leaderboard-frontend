@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { Honor } from '../models/leaderboard.model';
 import { LeaderboardService } from './leaderboard.service';
 import { Response } from '../models/response.model';
-import { buildUrl } from './utilities';
+import { buildUrl, handleError } from './utilities';
 
 @Injectable({
   providedIn: 'root'
@@ -14,23 +14,31 @@ export class RemoteLeaderboardService implements LeaderboardService{
 
   addUser(username: string): Observable<Response<string>> {
     const url = buildUrl('/addUser');
-    return this.http.post<Response<string>>(url, username);
+    return this.http
+      .post<Response<string>>(url, username)
+      .pipe(catchError(handleError));
   }
 
   getUsersByHonor(): Observable<Response<Honor[]>>{
     const url = buildUrl('/getUsers/honors');
-    return this.http.get<Response<Honor[]>>(url);
+    return this.http
+      .get<Response<Honor[]>>(url)
+      .pipe(catchError(handleError));
   }
 
   getUsersByFilter(sortBy?: string): Observable<Response<any[]>>{
     const url = buildUrl('/getUsers');
     const params = sortBy ? new HttpParams().set('sortBy', sortBy) : {};
-    return this.http.get<Response<any[]>>(url, {params: params});
+    return this.http
+      .get<Response<any[]>>(url, {params: params})
+      .pipe(catchError(handleError));
   }
 
   removeUser(codewarsId: string): Observable<Response<string>>{
     const url = buildUrl('/removeUser');
     const params = codewarsId ? new HttpParams().set('codewarsId', codewarsId) : {};
-    return this.http.delete<Response<string>>(url); 
+    return this.http
+      .delete<Response<string>>(url)
+      .pipe(catchError(handleError)); 
   }
 }
