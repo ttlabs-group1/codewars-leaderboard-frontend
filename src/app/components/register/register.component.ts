@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Credentials } from 'src/app/models/credentials.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { AUTH_SERVICE_TOKEN } from 'src/app/services/utilities';
+import { AUTH_SERVICE_TOKEN, SESSION_KEY, setCookie } from 'src/app/services/utilities';
 import { AppUserStore } from 'src/app/stores/app-user.store';
 
 @Component({
@@ -84,7 +84,8 @@ export class RegisterComponent {
       .subscribe({
         next: value => {
           console.log('success');
-          this.userStore.setUser(value.data?.data!);
+          this.userStore.setUser(value.body?.data?.data!);
+          setCookie(SESSION_KEY, value.headers.get("Set-Cookie")!, 1);
           location.pathname = '/leaderboard';
         },
         error: err => console.error(err),
