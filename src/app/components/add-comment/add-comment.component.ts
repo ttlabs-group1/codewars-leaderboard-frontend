@@ -29,7 +29,6 @@ export class AddCommentComponent {
           next: (value) => {
             if (value.success) {
               this.onAddComment.emit(this.comment);
-              console.log(value);
             }
           },
           error: (error) => {
