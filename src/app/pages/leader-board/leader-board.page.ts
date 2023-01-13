@@ -16,7 +16,10 @@ export class LeaderBoardPage implements OnInit, OnDestroy{
   timeInterval?: Subscription;
   users_honors: Honor[] = [];
   users_filter: any[] = [];
-  languages: string[] = ["JavaScript", "Python", "Ruby", "Java", "C#", "C++", "Swift", "Go", "Scala", "Kotlin", "TypeScript", "Shell", "PHP", "Lua", "Crystal", "Rust", "F#", "Lua", "Perl", "Erlang", "Elixir", "R", "Julia", "C", "Swift", "Dart", "Haskell", "OCaml", "Racket", "Scheme", "Forth", "Brainfuck", "Smalltalk", "Lua", "Groovy", "Objective-C"];
+  languages: string[] = ["JavaScript", "Python", "Ruby", "Java", "C#", "C++", "Swift", "Go", "Scala", 
+  "Kotlin", "TypeScript", "Shell", "PHP", "Lua", "Crystal", "Rust", "F#", "Lua", "Perl", "Erlang", 
+  "Elixir", "R", "Julia", "C", "Swift", "Dart", "Haskell", "OCaml", "Racket", "Scheme", "Forth", "Brainfuck", 
+  "Smalltalk", "Lua", "Groovy", "Objective-C"];
   filterValue: string = "overall";
 
   
@@ -27,42 +30,32 @@ export class LeaderBoardPage implements OnInit, OnDestroy{
     ) {}
     
     ngOnInit(): void {
-      
-      this.timeInterval = interval(50000).pipe(
+      this.getUsersHonor();
+      this.getUsersFilter(this.filterValue);
+    }
+
+    getUsersHonor(){
+      this.timeInterval = interval(5000).pipe(
         startWith(0),
         switchMap(() => this.leaderboardService.getUsersByHonor())).subscribe({
           next: value => {
             console.log(value.data);
             if (value.data) this.users_honors = value.data.data;
           }
-        })
-        
-        this.timeInterval = interval(50000).pipe(
-          startWith(0),
-          switchMap(() => this.leaderboardService.getUsersByFilter(this.filterValue))).subscribe({
-            next: value => {
-              console.log(value.data);
-              if (value.data) this.users_filter = value.data.data;
-            }
-          })
-          
-          // interval(3000).subscribe(() => {
-          //   this.leaderboardService.getUsersByHonor().subscribe({
-          //     next: value => {
-          //       console.log(value.data);
-          //       if (value.data) this.users_honors = value.data.data;
-          //     }
-          //   });
-          // }) 
-          
-          // interval(3000).subscribe(() => {
-          //   this.leaderboardService.getUsersByFilter(this.filterValue).subscribe({
-          //     next: value => {
-          //       console.log(value.data);
-          //       if (value.data) this.users_filter = value.data.data;
-          //     }
-          //   })
-          // }) 
+        }
+      )
+    }
+
+    getUsersFilter(filterValue: string){
+      this.timeInterval = interval(5000).pipe(
+        startWith(0),
+        switchMap(() => this.leaderboardService.getUsersByFilter(this.filterValue))).subscribe({
+          next: value => {
+            console.log(value.data);
+            if (value.data) this.users_filter = value.data.data;
+          }
+        }
+      )
     }
     
 
@@ -75,7 +68,8 @@ export class LeaderBoardPage implements OnInit, OnDestroy{
         accept: () => {
           console.log(userId)
           this.leaderboardService.removeUser(userId).subscribe(response => {
-            
+            this.users_honors = this.users_honors.filter(item => item.codewarsId !== userId);
+            this.users_filter = this.users_filter.filter(item => item.codewarsId !== userId);
             this.messageService.add({severity:'success', summary: 'Success', detail: 'User deleted successfully.'})
           }, error => {
             this.messageService.add({severity:'error', summary: 'Error', detail: 'Something went wrong.'});
@@ -95,7 +89,7 @@ export class LeaderBoardPage implements OnInit, OnDestroy{
       this.leaderboardService.getUsersByFilter(this.filterValue).subscribe({
         next: value => {
           console.log(value.data);
-          if (value.data) this.users_filter = this.language;
+          if (value.data) this.users_filter = value.data.data;
         }
       })
     }
