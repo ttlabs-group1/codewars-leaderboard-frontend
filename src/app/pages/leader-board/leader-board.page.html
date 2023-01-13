@@ -16,7 +16,7 @@
             <td>{{user.name}}</td>
             <td>{{user.honor}}</td>
             <td class="flex gap-1">
-              <p-button [routerLink]="['/user', user.id]" label="View" styleClass="p-button-sm"></p-button>
+              <p-button [routerLink]="['/user', user.codewarsId]" label="View" styleClass="p-button-sm"></p-button>
               <p-button label="Delete" styleClass="p-button-sm p-button-danger" (click)="removeUser(user.codewarsId)"></p-button>
             </td>
           </tr>
@@ -26,7 +26,7 @@
     <p-tabPanel header="Score">
       <div class="flex gap-4">
         <p
-          class="flex justify-content-start text-xs font-semibold text-blue-600"
+          class="flex justify-content-start text-xs font-semibold text-white"
         >
           Based on:
         </p>
@@ -35,8 +35,9 @@
           class="text-xs font-semibold p-0 border-round border-blue-600"
         >
           <option selected="selected" value="overall">Overall</option>
-          <option value="python">Python</option>
-          <option value="java">Java</option>
+          <option *ngFor="let lang of languages" value={{lang.toLowerCase()}}>{{lang}}</option>
+          <!-- <option value="python">Python</option>
+          <option value="java">Java</option> -->
         </select>
       </div>
 
@@ -58,7 +59,7 @@
               <td>{{user.ranks.languages[filterValue].score}}</td>
             </ng-template>
             <td class="flex gap-1">
-              <p-button [routerLink]="['/user', user.id]" label="View" styleClass="p-button-sm"></p-button>
+              <p-button [routerLink]="['/user', user.codewarsId]" label="View" styleClass="p-button-sm"></p-button>
               <p-button label="Delete" styleClass="p-button-sm p-button-danger" (click)="removeUser(user.codewarsId)"></p-button>
             </td>
           </tr>
@@ -68,10 +69,10 @@
   </p-tabView>
   
   <p-toast></p-toast>
-  <p-confirmDialog header="Confirmation">
+  <p-confirmDialog #cd header="Confirmation">
     <ng-template pTemplate="footer">
-      <button type="button" pButton icon="pi pi-times" label="No" class="p-button-primary"></button>
-      <button type="button" pButton icon="pi pi-check" label="Yes" class="p-button-danger"></button>
+      <button type="button" pButton icon="pi pi-times" label="No" class="p-button-primary" (click)="cd.reject()"></button>
+      <button type="button" pButton icon="pi pi-check" label="Yes" class="p-button-danger" (click)="cd.accept()"></button>
   </ng-template>
   </p-confirmDialog>
 </div>
