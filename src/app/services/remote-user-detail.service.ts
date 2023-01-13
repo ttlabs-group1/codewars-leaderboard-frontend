@@ -12,7 +12,7 @@ export class RemoteUserDetailService implements UserDetailService {
   constructor(private http: HttpClient) {}
 
   getUserDetail(userId: string): Observable<Response<UserDetail>> {
-    const url = buildUrl(`/user/getUser/${userId}`);
+    const url = buildUrl(`/getUser/${userId}`);
     return this.http.get<Response<UserDetail>>(url);
   }
 
