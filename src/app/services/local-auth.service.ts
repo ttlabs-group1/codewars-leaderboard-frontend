@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Credentials } from '../models/credentials.model';
@@ -16,13 +17,15 @@ export class LocalAuthService implements AuthService {
 
   constructor() { }
 
-  login(credentials: Credentials): Observable<Response<User>> {
-    return createObservable<Response<User>>({
-      success: true,
-      data: {
-        data: LocalAuthService.USER
+  login(credentials: Credentials): Observable<HttpResponse<Response<User>>> {
+    return createObservable<HttpResponse<Response<User>>>(new HttpResponse({
+      body: {
+        success: true,
+        data: {
+          data: LocalAuthService.USER
+        }
       }
-    });
+    }));
   }
 
   register(credentials: Credentials): Observable<Response<string>> {
