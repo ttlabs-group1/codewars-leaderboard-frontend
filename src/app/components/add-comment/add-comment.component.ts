@@ -22,31 +22,22 @@ export class AddCommentComponent {
   addComment(): void {
     this.loading = true;
 
-    this.userDetailService
-      .addUserComment(this.userId, this.comment)
-      .subscribe({
-        next: (value) => {
-          if (value.success) {
-            this.onAddComment.emit(this.comment);
-          }
-          this.loading = false;
-        },
-        error: (error) => {
-          console.error(error.message);
-          this.loading = false;
-        },
-        complete: () => {
-          this.loading = false;
-          console.log('done');
-        },
-      })
-      .add(() => {
-        this.loading = false;
-
-        console.log(
-          'Will be executed on both success or error of the previous subscription'
-        );
-      });
+    try {
+      this.userDetailService
+        .addUserComment(this.userId, this.comment)
+        .subscribe({
+          next: (value) => {
+            if (value.success) {
+              this.onAddComment.emit(this.comment);
+            }
+          },
+          error: (error) => {
+            console.error(error.message);
+          },
+        });
+    } finally {
+      this.loading = false;
+    }
   }
 
   ngOnInit() {

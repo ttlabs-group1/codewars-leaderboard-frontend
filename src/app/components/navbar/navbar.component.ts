@@ -15,10 +15,9 @@ import { RegisterComponent } from '../register/register.component';
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
-  providers: [DialogService]
+  providers: [DialogService],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-
   ref?: DynamicDialogRef;
 
   loggedInUser?: User;
@@ -47,48 +46,58 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   getUser(): void {
     this.userStoreSubscription?.unsubscribe();
-    this.userStoreSubscription = this.userStore.user
-      .subscribe({
-        next: user => this.loggedInUser = user,
-        error: error => console.error(error)
-      });
+    this.userStoreSubscription = this.userStore.user.subscribe({
+      next: (user) => (this.loggedInUser = user),
+      error: (error) => console.error(error),
+    });
   }
 
   showRegister() {
     this.ref = this.dialogService.open(RegisterComponent, {
       header: 'Welcome!',
-      width: '30%'
+      width: '30%',
     });
   }
 
   showLogin() {
     this.ref = this.dialogService.open(LoginComponent, {
       header: 'Welcome Back!',
-      width: '30%'
+      width: '30%',
     });
   }
 
   showAddCodewarsUser() {
     this.ref = this.dialogService.open(AddCodewarsUserComponent, {
       header: 'Add Codewars User',
-      width: '30%'
+      width: '30%',
     });
   }
 
   logout() {
     this.loading = true;
     this.authServiceSubscription?.unsubscribe();
-    this.authServiceSubscription = this.authService.logout("JSESSIONID")
-      .subscribe({
-        next: value => {
-          this.userStore.removeUser();
-          this.router.navigateByUrl('/');
-        },
-        error: err => { 
-          console.error(err);
-          this.messageService.add({ severity: 'danger', summary: 'Logout failed!', detail: 'Please try again.' })
-        },
-        complete: () => this.loading = false
+
+    try {
+      this.authServiceSubscription = this.authService
+        .logout('JSESSIONID')
+        .subscribe({
+          next: (value) => {
+            this.userStore.removeUser();
+            this.router.navigateByUrl('/');
+          },
+          error: (err) => {
+            console.error(err);
+          },
+          complete: () => (this.loading = false),
+        });
+    } catch (err) {
+      this.messageService.add({
+        severity: 'danger',
+        summary: 'Logout failed!',
+        detail: 'Please try again.',
       });
+    } finally {
+      this.loading = false;
+    }
   }
 }
