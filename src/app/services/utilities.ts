@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export const USER_STORAGE_KEY = 'user';
+export const SESSION_STORAGE_KEY = 'sessionId';
 
 export const AUTH_SERVICE_TOKEN = new InjectionToken<string>('auth-service');
 export const USER_DETAIL_SERVICE_TOKEN = new InjectionToken<string>(

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Credentials } from '../models/credentials.model';
@@ -12,9 +12,9 @@ export class RemoteAuthService implements AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(credentials: Credentials): Observable<Response<User>> {
+  login(credentials: Credentials): Observable<HttpResponse<Response<User>>> {
     const url = buildUrl('login');
-    return this.http.post<Response<User>>(url, credentials);
+    return this.http.post<Response<User>>(url, credentials, { observe: 'response' });
   }
 
   register(credentials: Credentials): Observable<Response<string>> {
