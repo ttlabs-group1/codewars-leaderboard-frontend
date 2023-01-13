@@ -81,7 +81,7 @@
           *ngFor="let comment of userDetail?.comments;"
           [style]="{'border-radius': '5px', 'border': '1px solid var(--surface-200)', 'border-left': '4px solid var(--surface-500)', 'box-shadow': 'none', 'padding': '10px 20px', 'margin': '10px 0 20px'}"
         >
-          {{comment}}
+          {{comment.commentText}}
         </div>
       </div>
     </div>

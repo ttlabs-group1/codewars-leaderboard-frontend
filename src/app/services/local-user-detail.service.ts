@@ -48,7 +48,8 @@ export class LocalUserDetailService implements UserDetailService {
         },
       },
     },
-    comments: [...LocalUserDetailService.COMMENTS],
+    // comments: [...LocalUserDetailService.COMMENTS],
+    comments: [],
   };
 
   constructor() {}

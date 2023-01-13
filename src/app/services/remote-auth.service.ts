@@ -12,7 +12,7 @@ export class RemoteAuthService implements AuthService {
   constructor(private http: HttpClient) {}
 
   login(credentials: Credentials): Observable<HttpResponse<Response<User>>> {
-    const url = buildUrl('/login');
+    const url = buildUrl('/account/login');
     return this.http
       .post<Response<User>>(url, credentials, {
         ...httpOptions,
@@ -22,14 +22,14 @@ export class RemoteAuthService implements AuthService {
   }
 
   register(credentials: Credentials): Observable<Response<string>> {
-    const url = buildUrl('/register');
+    const url = buildUrl('/account/register');
     return this.http
       .post<Response<string>>(url, credentials, httpOptions)
       .pipe(catchError(handleError));
   }
 
   logout(sessionId: string): Observable<null> {
-    const url = buildUrl('/logout');
+    const url = buildUrl('/account/logout');
     return this.http.post<null>(url, null).pipe(catchError(handleError));
   }
 }
