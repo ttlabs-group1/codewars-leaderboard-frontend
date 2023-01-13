@@ -24,16 +24,6 @@
   />
 
   <div class="flex justify-content-center">
-    <button type="submit" pButton label="Login"></button>
-  </div>
-
-  <div class="flex justify-content-center align-items-center">
-    <p class="flex justify-content-center">Don't have an account?</p>
-    <button
-      pButton
-      type="button"
-      label="Register"
-      class="p-button-link"
-    ></button>
+    <button type="submit" pButton label="Login" [loading]="loading"></button>
   </div>
 </form>
