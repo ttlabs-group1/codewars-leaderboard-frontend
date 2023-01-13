@@ -26,7 +26,7 @@
     <p-tabPanel header="Score">
       <div class="flex gap-4">
         <p
-          class="flex justify-content-start text-xs font-semibold text-blue-600"
+          class="flex justify-content-start text-xs font-semibold text-white"
         >
           Based on:
         </p>
@@ -35,8 +35,9 @@
           class="text-xs font-semibold p-0 border-round border-blue-600"
         >
           <option selected="selected" value="overall">Overall</option>
-          <option value="python">Python</option>
-          <option value="java">Java</option>
+          <option *ngFor="let lang of languages" value={{lang.toLowerCase()}}>{{lang}}</option>
+          <!-- <option value="python">Python</option>
+          <option value="java">Java</option> -->
         </select>
       </div>
 
