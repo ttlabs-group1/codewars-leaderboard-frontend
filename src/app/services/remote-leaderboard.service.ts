@@ -35,8 +35,7 @@ export class RemoteLeaderboardService implements LeaderboardService{
   }
 
   removeUser(codewarsId: string): Observable<Response<string>>{
-    const url = buildUrl('/removeUser');
-    const params = codewarsId ? new HttpParams().set('codewarsId', codewarsId) : {};
+    const url = buildUrl(`/user/deleteUser/${codewarsId}`);
     return this.http
       .delete<Response<string>>(url)
       .pipe(catchError(handleError)); 

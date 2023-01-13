@@ -46,6 +46,7 @@ import { FormsModule } from '@angular/forms';
 import { AddCodewarsUserComponent } from './components/add-codewars-user/add-codewars-user.component';
 import { RemoteUserDetailService } from './services/remote-user-detail.service';
 import { RemoteAuthService } from './services/remote-auth.service';
+import { RemoteLeaderboardService } from './services/remote-leaderboard.service';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,7 @@ import { RemoteAuthService } from './services/remote-auth.service';
     AppUserStore,
     { provide: AUTH_SERVICE_TOKEN, useClass: RemoteAuthService },
     { provide: USER_DETAIL_SERVICE_TOKEN, useClass: RemoteUserDetailService },
-    { provide: LEADERBOARD_SERVICE_TOKEN, useClass: LocalLeaderboardService },
+    { provide: LEADERBOARD_SERVICE_TOKEN, useClass: RemoteLeaderboardService },
   ],
   bootstrap: [AppComponent],
 })
